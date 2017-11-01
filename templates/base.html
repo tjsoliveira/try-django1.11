@@ -14,7 +14,16 @@
 
     <h1>Hello World!</h1>
     <p>This is {{ html_var }} coming through</p>
-    <p>Random number = {{ random_num }}</p>
+    {% if html_var %}
+      <p>Random number = {{ random_num }}</p>
+    {% endif %}
+    {% for some_item in some_list %}
+      {{ some_item }}
+      {% if some_item|divisibleby:'2' %}
+        is Even
+      {% endif %}
+      <br>
+    {% endfor %}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
