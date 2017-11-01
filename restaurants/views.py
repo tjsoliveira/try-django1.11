@@ -9,4 +9,14 @@ def home(request):
         'random_num': random.randint(0, 10000),
         'some_list': some_list
     }
-    return render(request,'base.html', context)
+    return render(request,'home.html', context)
+
+def about(request):
+    context = {
+    }
+    return render(request,'about.html', context)
+
+def contact(request):
+    context = {
+    }
+    return render(request,'contact.html', context)
