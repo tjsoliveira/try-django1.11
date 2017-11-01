@@ -1,7 +1,10 @@
-#from django.shortcuts import render
-from django.http import HttpResponse
+import random
+from django.shortcuts import render
 
 # function based view
 def home(request):
-    #return render(request=request, template_name= 'home.html', {})
-    return HttpResponse('Hello')
+    context = {
+        'html_var': 'context variable',
+        'random_num': random.randint(0, 10000)
+    }
+    return render(request,'base.html', context)
