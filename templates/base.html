@@ -7,23 +7,16 @@
     <title>
       {% block head_title %}Muypicky.com{% endblock head_title %}
     </title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    {% include "snippets/css.html" %}
   </head>
   <body>
-    <h1>MuyPicky.com</h1>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-
+    <div class="container">
+      {% include "snippets/nav.html" %}
+    </div>
+    <div class="container">
       {% block content %}
       {% endblock content %}
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </div>
+    {% include "snippets/js.html" %}
   </body>
 </html>
