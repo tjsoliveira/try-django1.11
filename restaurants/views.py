@@ -1,24 +1,17 @@
 import random
 from django.shortcuts import render
-from django.views import View
+from django.views.generic import TemplateView
 
-# function based view
-def home(request):
-    some_list = [random.randint(0, 10000), random.randint(0, 10000), random.randint(0, 10000)]
-    context = {
-        'html_var': 'context variable',
-        'random_num': random.randint(0, 10000),
-        'some_list': some_list
-    }
-    return render(request,'home.html', context)
+class HomeView(TemplateView):
 
-def about(request):
-    context = {
-    }
-    return render(request,'about.html', context)
+    template_name = "home.html"
 
-class ContactView(View):
-
-    def get(self, request, *args, **kwargs):
-        context = {}
-        return render(request,"contact.html", context)
+    def get_context_data(self, *args, **kwargs):
+        #context = super(HomeView, self).get_context_data(*args, **kwargs)
+        some_list = [random.randint(0, 10000), random.randint(0, 10000), random.randint(0, 10000)]
+        context = {
+            'html_var': 'context variable',
+            'random_num': random.randint(0, 10000),
+            'some_list': some_list
+        }
+        return context
