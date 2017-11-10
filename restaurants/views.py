@@ -1,6 +1,27 @@
 from django.views.generic import ListView, DetailView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from .models import RestaurantLocation
+from .forms import RestaurantCreateForm
+from django.http import HttpResponseRedirect
+
+def restaurant_create_view(request):
+    template_name = 'restaurants/restaurant_create_form.html'
+    if request.method == "GET":
+        print("get data")
+    if request.method == "POST":
+        print("post data")
+        print(request.POST)
+        name = request.POST.get("name")
+        location = request.POST.get("location")
+        category = request.POST.get("category")
+        obj = RestaurantLocation.objects.create(
+            name = name,
+            location = location,
+            category = category
+        )
+        return HttpResponseRedirect("/restaurants/")
+    context = {}
+    return render(request, template_name, context)
 
 class RestaurantListView(ListView):
 
