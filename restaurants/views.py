@@ -24,8 +24,8 @@ class RestaurantDetailView(DetailView):
     template_name = 'restaurants/restaurant_detail.html'
     queryset = RestaurantLocation.objects.all()
 
-    def get_object(self, *args, **kwargs):
-        print(self.kwargs)
-        rest_id = self.kwargs.get('pk')
-        obj = get_object_or_404(RestaurantLocation, id=rest_id)
-        return obj
+    # def get_object(self, *args, **kwargs):
+    #     print(self.kwargs)
+    #     rest_id = self.kwargs.get('pk')
+    #     obj = get_object_or_404(RestaurantLocation, id=rest_id)
+    #     return obj
