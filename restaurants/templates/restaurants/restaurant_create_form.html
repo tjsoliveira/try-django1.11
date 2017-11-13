@@ -4,9 +4,7 @@
 
 {% block content %}
 <h1>Create a Restaurant</h1>
-{% if form.errors %}
-  {{ form.errors }}
-{% endif %}
+
 
 <form method="POST">
   {% csrf_token %}
