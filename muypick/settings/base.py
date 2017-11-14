@@ -52,6 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'muypick.urls'
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {
