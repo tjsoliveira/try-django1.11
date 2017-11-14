@@ -7,17 +7,19 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .forms import RestaurantCreateForm, RestaurantLocationCreateForm
 from .models import RestaurantLocation
 
-
 def restaurant_createview(request):
     form = RestaurantLocationCreateForm(request.POST or None)
     errors = None
     if form.is_valid():
-        form.save()
+        if request.user.is_authenticated():
+            instance = form.save(commit=False)
+            instance.owner = request.user
+            instance.save()
         return HttpResponseRedirect("/restaurants/")
     if form.errors:
         errors = form.errors
 
-    template_name = 'restaurants/form.html'
+    template_name = 'restaurants/restaurant_create_form.html'
     context = {"form": form, "errors": errors}
     return render(request, template_name, context)
 
@@ -31,7 +33,7 @@ def restaurant_listview(request,):
 
 
 def restaurant_detailview(request, slug):
-    template_name = 'restaurants/restaurantlocation_detail.html'
+    template_name = 'restaurants/restaurant_detail.html'
     obj = RestaurantLocation.objects.get(slug=slug)
     context = {
         "object": obj

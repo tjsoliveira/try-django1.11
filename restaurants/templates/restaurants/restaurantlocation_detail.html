@@ -3,6 +3,7 @@
 {% block content %}
 <h1>{{ object.name }} <small> {{ object.category }}</small></h1>
 <p>{{ object.location }}</p>
+<p>{{ object.owner }}</p>
 <p>Created: {{ object.timestamp }}</p>
 <p>Updated {{ object.updated|timesince }} ago</p>
 {% endblock content %}
