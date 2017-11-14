@@ -34,7 +34,6 @@ def restaurant_listview(request,):
     }
     return render(request, template_name, context)
 
-
 def restaurant_detailview(request, slug):
     template_name = 'restaurants/restaurant_detail.html'
     obj = RestaurantLocation.objects.get(slug=slug)
@@ -55,15 +54,8 @@ class RestaurantListView(ListView):
             queryset = RestaurantLocation.objects.all()
         return queryset
 
-
 class RestaurantDetailView(DetailView):
-    queryset = RestaurantLocation.objects.all() #.filter(category__iexact='asian') # fitler by user
-
-    # def get_object(self, *args, **kwargs):
-    #     rest_id = self.kwargs.get('rest_id')
-    #     obj = get_object_or_404(RestaurantLocation, id=rest_id) # pk = rest_id
-    #     return obj
-
+    queryset = RestaurantLocation.objects.all()
 
 class RestaurantCreateView(LoginRequiredMixin, CreateView):
     #login_url = '/login/'
