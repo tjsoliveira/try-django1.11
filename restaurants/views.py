@@ -58,10 +58,9 @@ class RestaurantDetailView(DetailView):
     queryset = RestaurantLocation.objects.all()
 
 class RestaurantCreateView(LoginRequiredMixin, CreateView):
-    #login_url = '/login/'
     form_class = RestaurantLocationCreateForm
     template_name = 'restaurants/restaurant_create_form.html'
-    success_url = "/restaurants/"
+    #success_url = "/restaurants/"
 
     def form_valid(self, form):
         instance = form.save(commit=False)
