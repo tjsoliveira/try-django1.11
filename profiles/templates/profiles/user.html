@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+  {% block head_title %}{{ user.username }} || {{block.super}} {% endblock head_title %}
+
+{% block content %}
+<h1>{{ user.username }}</h1>
+<hr>
+{% if user.restaurantlocation_set.all.exists %}
+<h2>Restaurants <small><a href="{% url 'restaurants:create' %}">Add</a></small></h2>
+{% for rest in user.restaurantlocation_set.all %}
+  <li>
+    <a href="{{ rest.get_absolute_url }}">{{ rest.name }}</a> {{ rest.location }}
+    {% for it in rest.item_set.all %}
+      <ul><a href="{{ it.get_absolute_url }}">{{ it.name }}</a></ul>
+    {% endfor %}
+  </li>
+{% endfor %}
+{% else %}
+<p class="load">No Restaurants Found</p>
+{% endif %}
+<hr>
+{% endblock content %}}
